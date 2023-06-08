@@ -1,0 +1,20 @@
+{
+  "name": "esquire-resorts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1" ,
+        "client": "cd client && npm start",
+        "server": "cd server && node index.js",
+      "dev": "concurrently \"npm run client\" \"npm run server\" ",
+      "build": "cd client && npm run build"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.1.0"
+  }
+}

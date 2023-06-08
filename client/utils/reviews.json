@@ -1,0 +1,23 @@
+[
+    {
+        "name":"Samuel Okeshola",
+        "stars": 5,
+        "review":"A truly remarkable stay! The rooms were beautifully appointed, and the staff went above and beyond to ensure our comfort. The food was absolutely divine. Highly recommend!"
+    },{
+        "name":"Fikayo Jetawo",
+        "stars": 5,
+        "review":"Impeccable service and attention to detail. The serene ambiance provided the perfect escape. The meals were a culinary delight, exceeding all expectations. Can't wait to return!"
+    },{
+        "name":"Sadu Awaal",
+        "stars": 5,
+        "review":"The hotel exceeded all our expectations. The rooms were luxurious and comfortable, and the staff treated us with utmost respect and professionalism. The food was exceptional"
+    },{
+        "name":"Gbenga Martins",
+        "stars": 5,
+        "review":"A hidden gem! The tranquil environment made for a relaxing retreat. The meals were an absolute treat for the taste buds. We were impressed by the warm and attentive staff"
+    },{
+        "name":"Okoye Emeka",
+        "stars": 5,
+        "review":"What an unforgettable experience! From the moment we arrived, we were enveloped in luxury. The food was a gastronomic journey, and the staff made us feel like VIPs. Perfect!"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+"question":" Is parking available at the hotel?",
+"answer":"Yes, we offer complimentary parking for our guests.",
+"questionref":"firstQuestion",
+"answerref":"firstAnswer"
+},
+{
+"question":"  Is Wi-Fi available in the rooms?",
+"answer":"Yes, we provide complimentary high-speed Wi-Fi access in all guest rooms and public areas.",
+"questionref":"secondQuestion",
+"answerref":"secondAnswer"
+},
+{
+"question":" Are there dining options available at the hotel?",
+"answer":"Yes, we have an on-site restaurant offering a diverse menu of delicious culinary options. Room service is also available.",
+"questionref":"thirdQuestion",
+"answerref":"thirdAnswer"
+},
+{
+"question":"  How can I make a reservation?",
+"answer":"You can easily make a reservation on our website by selecting your desired dates and room type. Alternatively, you can contact our reservations team directly for assistance.",
+"questionref":"fourthQuestion",
+"answerref":"fourthAnswer"
+},
+{
+"question":"What safety measures are in place at the hotel?",
+"answer":"We prioritize the safety and well-being of our guests. We have implemented enhanced cleaning protocols, social distancing measures, and other health and safety measures in accordance with local guidelines.",
+"questionref":"fifthQuestion",
+"answerref":"fifthAnswer"
+}
+]
