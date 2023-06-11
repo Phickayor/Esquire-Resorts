@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: ["/"], // restrict calls to those this address
+        origin: ["https://esquire-resorts.onrender.com"], // restrict calls to those this address
         methods: ["POST"] // only allow POST requests
     })
 );
