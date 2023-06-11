@@ -17,7 +17,7 @@ function Mail() {
         var email = mailContainer.current.value
         var message = messageContainer.current.value
         var subject = subjectContainer.current.value
-        fetch("http://localhost:8080/feedback", {
+        fetch("/feedback", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

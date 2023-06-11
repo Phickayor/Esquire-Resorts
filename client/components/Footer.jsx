@@ -20,7 +20,7 @@ function Footer() {
         var mail = mailProvided.toLowerCase()
         if (emailPattern.test(mail) === true) {
             setLoad(spin)
-            fetch("http://localhost:8080/subscribe", {
+            fetch("/subscribe", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -77,7 +77,7 @@ function BookRoom(props) {
         var guestNumber = guestNumberContainer.current.value
         var roomname = props.roomname
 
-        fetch("http://localhost:8080/checkbooking", {
+        fetch("/checkbooking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

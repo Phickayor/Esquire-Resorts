@@ -73,7 +73,7 @@ function Details() {
             "4 Guests": 4,
             "Guest Number": null
         }[guestFilterSelected];
-        fetch("http://localhost:8080/sortreservations", {
+        fetch("/sortreservations", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -96,7 +96,7 @@ function Details() {
     }, [guestFilterSelected, roomFilterSelected, ref])
     useEffect(() => {
         var storedtoken = localStorage.getItem("token")
-        fetch('http://localhost:8080/confirmtoken', {
+        fetch('/confirmtoken', {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + storedtoken
@@ -116,7 +116,7 @@ function Details() {
     }, [FindSearch, router])
 
     useLayoutEffect(() => {
-        fetch("http://localhost:8080/reservations")
+        fetch("/reservations")
             .then(function (res) {
                 return res.json()
             }).then(function (data) {

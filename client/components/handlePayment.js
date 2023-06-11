@@ -4,7 +4,7 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
     console.log("got to payment fn")
     function CreateBooking(sname, semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref) {
 
-        fetch("http://localhost:8080/booking", {
+        fetch("/booking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +44,7 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
 }
 function SendMail(status, name, email, roomname, arrivalDate, depatureDate, guestNumber, price, ref) {
     if (status === "success") {
-        fetch("http://localhost:8080/sendreservation", {
+        fetch("/sendreservation", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

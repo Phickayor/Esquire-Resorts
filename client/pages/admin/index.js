@@ -24,7 +24,7 @@ function Login() {
         e.preventDefault()
         var email = emailContainer.current.value
         var pswd = pswdContainer.current.value
-        fetch("http://localhost:8080/login", {
+        fetch("/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, pswd })

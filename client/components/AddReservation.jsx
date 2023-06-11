@@ -21,7 +21,7 @@ function AddReservation(props) {
         const sguestNumber = guestContainer.current.value;
         const sprice = priceContainer.current.value;
         const sref = "Physical Booking";
-        fetch("http://localhost:8080/booking", {
+        fetch("/booking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
