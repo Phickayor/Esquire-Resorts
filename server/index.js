@@ -16,12 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: ["https://esquireresorts.com", "https://www.esquireresorts.com", "http://localhost:3000", "https://esquire-resorts.onrender.com"], // restrict calls to those this address
+        origin: ["/"], // restrict calls to those this address
         methods: ["POST"] // only allow POST requests
     })
 );
 app.use(morgan("combined"))
-app.use(express.static(path.join(__dirname, '/../client', "build")))
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
 const oauth2Client = new OAuth2(
@@ -34,8 +33,12 @@ oauth2Client.setCredentials({
 });
 const accessToken = oauth2Client.getAccessToken()
 
-app.get(`/`, (req, res) => {
-    res.sendFile(path.join(__dirname, '/../client', 'build', 'server', 'pages', 'index.html'));
+app.get(`/sa`, (req, res) => {
+    res.send({
+        id: new Date().getTime(),
+        name: "Esquire Resorts",
+        location: 'Lagos Nigeria'
+    })
 })
 
 //Transporter Details
