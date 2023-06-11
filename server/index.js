@@ -367,4 +367,5 @@ app.get("/confirmtoken", function (req, res) {
     }
 })
 app.listen(8080, () => {
-    console.l
+    console.log(`Server listening on 8080`);
+});
