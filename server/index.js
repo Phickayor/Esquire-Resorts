@@ -8,6 +8,8 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 const app = express()
+const path = require("path")
+const morgan = require("morgan")
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
@@ -18,7 +20,8 @@ app.use(
         methods: ["POST"] // only allow POST requests
     })
 );
-
+app.use(morgan("combined"))
+app.use(express.static(path.join(__dirname, '/../client', "build")))
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
 const oauth2Client = new OAuth2(
@@ -30,6 +33,10 @@ oauth2Client.setCredentials({
     refresh_token: process.env.OAUTH_REFRESH_TOKEN
 });
 const accessToken = oauth2Client.getAccessToken()
+
+app.get(`/`, (req, res) => {
+    res.sendFile(path.join(__dirname, '/../client', 'build', 'server', 'pages', 'index.html'));
+})
 
 //Transporter Details
 var transporter = nodemailer.createTransport({
