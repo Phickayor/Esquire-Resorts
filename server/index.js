@@ -23,6 +23,10 @@ app.use(
 app.use(morgan("combined"))
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
+app.use(express.static(path.join(__dirname, '/../client', 'build')))
+app.get(`/`, (req, res) => {
+    res.sendFile(path.join(__dirname, '/../client', 'build/server/pages'));
+})
 const oauth2Client = new OAuth2(
     process.env.OAUTH_CLIENTID, // ClientID
     process.env.OAUTH_CLIENT_SECRET, // Client Secret
