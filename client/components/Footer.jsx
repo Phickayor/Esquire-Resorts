@@ -6,6 +6,7 @@ import { faPhone, faMapMarker, faSpinner } from '@fortawesome/free-solid-svg-ico
 import 'aos/dist/aos.css'
 import Aos from 'aos'
 import Link from 'next/link'
+import { baseurl } from '../config/host'
 function Footer() {
     const suscriberMailContainer = useRef(null)
     const mail = <FontAwesomeIcon icon={faEnvelope} />
@@ -20,7 +21,7 @@ function Footer() {
         var mail = mailProvided.toLowerCase()
         if (emailPattern.test(mail) === true) {
             setLoad(spin)
-            fetch("/subscribe", {
+            fetch(`${baseurl}/subscribe`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

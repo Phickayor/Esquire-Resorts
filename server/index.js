@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: ["https://esquireresorts.com", "https://www.esquireresorts.com", "http://localhost:3000", "https://esquireresorts.netlify.app"], // restrict calls to those this address
+        origin: ["https://esquireresorts.com", "https://www.esquireresorts.com", "http://localhost:3000", "https://esquire-resorts.onrender.com"], // restrict calls to those this address
         methods: ["POST"] // only allow POST requests
     })
 );
@@ -213,7 +213,7 @@ app.post('/subscribe', function (req, res) {
                     <h2 style="color: #333;">Welcome to Exclusive Offers!</h2>
                     
                     <p style="margin-bottom: 15px;">
-                      Hey suscriber,
+                      Hey subscriber,
                     </p>
                     
                     <p>
@@ -367,5 +367,4 @@ app.get("/confirmtoken", function (req, res) {
     }
 })
 app.listen(8080, () => {
-    console.log(`Server listening on 8080`);
-});
+    console.l
