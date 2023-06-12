@@ -8,7 +8,7 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 const app = express()
-const path = require("path")
+// const path = require("path")
 const morgan = require("morgan")
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: ["https://esquire-resorts.onrender.com"], // restrict calls to those this address
+        origin: ["https://www.esquireresorts.com"], // restrict calls to those this address
         methods: ["POST"] // only allow POST requests
     })
 );

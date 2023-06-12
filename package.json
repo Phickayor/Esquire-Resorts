@@ -9,7 +9,6 @@
       "client":"npm install && cd client && npm install && npm run build",
       "server":"cd server && npm install ",
       "start":"concurrently \"cd client && npm start\" \"cd server && npm start\" "
-      
   },
   "keywords": [],
   "author": "",
