@@ -1,6 +1,7 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useRef, useState } from 'react'
+import { baseurl } from '../config/host';
 
 function AddReservation(props) {
     const nameContainer = useRef();
@@ -21,7 +22,7 @@ function AddReservation(props) {
         const sguestNumber = guestContainer.current.value;
         const sprice = priceContainer.current.value;
         const sref = "Physical Booking";
-        fetch("/booking", {
+        fetch(`${baseurl}/booking`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

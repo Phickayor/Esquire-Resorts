@@ -2,6 +2,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef, useState } from 'react'
 import Aos from 'aos'
+import { baseurl } from '../config/host'
 import 'aos/dist/aos.css'
 function Mail() {
     const nameContainer = useRef()
@@ -17,7 +18,7 @@ function Mail() {
         var email = mailContainer.current.value
         var message = messageContainer.current.value
         var subject = subjectContainer.current.value
-        fetch("/feedback", {
+        fetch(`${baseurl}/feedback`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

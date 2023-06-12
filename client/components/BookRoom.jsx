@@ -6,6 +6,7 @@ import { faCheck, faInfoCircle, faSpinner, faStar } from '@fortawesome/free-soli
 import handlePayment from './handlePayment'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import { baseurl } from '../config/host'
 function BookRoom(props) {
     //  Defining all variables
 
@@ -77,7 +78,7 @@ function BookRoom(props) {
         var guestNumber = guestNumberContainer.current.value
         var roomname = props.roomname
 
-        fetch("/checkbooking", {
+        fetch(`${baseurl}/checkbooking`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

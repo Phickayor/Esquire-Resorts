@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons'
 const poppins = Poppins({ weight: '500', subsets: ['latin'] })
 import { useRouter } from 'next/router'
+import { baseurl } from '../config/host'
 function Details() {
     const [reservations, setReservation] = useState()
     const [content, setContent] = useState("details")
@@ -73,7 +74,7 @@ function Details() {
             "4 Guests": 4,
             "Guest Number": null
         }[guestFilterSelected];
-        fetch("/sortreservations", {
+        fetch(`${baseurl}/sortreservations`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -96,7 +97,7 @@ function Details() {
     }, [guestFilterSelected, roomFilterSelected, ref])
     useEffect(() => {
         var storedtoken = localStorage.getItem("token")
-        fetch('/confirmtoken', {
+        fetch(`${baseurl}/confirmtoken`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + storedtoken
@@ -116,7 +117,7 @@ function Details() {
     }, [FindSearch, router])
 
     useLayoutEffect(() => {
-        fetch("/reservations")
+        fetch(`${baseurl}/reservations`)
             .then(function (res) {
                 return res.json()
             }).then(function (data) {

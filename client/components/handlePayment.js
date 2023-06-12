@@ -1,10 +1,11 @@
 import Router from "next/router"
+import { baseurl } from '../config/host'
 
 function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestNumber, name) {
     console.log("got to payment fn")
     function CreateBooking(sname, semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref) {
 
-        fetch("/booking", {
+        fetch(`${baseurl}/booking`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +45,7 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
 }
 function SendMail(status, name, email, roomname, arrivalDate, depatureDate, guestNumber, price, ref) {
     if (status === "success") {
-        fetch("/sendreservation", {
+        fetch(`${baseurl}/sendreservation`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
