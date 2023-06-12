@@ -11,7 +11,7 @@ import { faUser, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Router from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
-import { baseurl } from '../config/host'
+import { baseurl } from '../../config/host'
 const poppins = Poppins({ weight: '500', subsets: ['latin'] })
 function Login() {
     const emailContainer = useRef()
