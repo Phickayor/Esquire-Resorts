@@ -1,5 +1,5 @@
 import Router from "next/router"
-import { baseurl } from '../config/host'
+import { baseurl, publickey } from '../config/host'
 
 function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestNumber, name) {
     console.log("got to payment fn")
@@ -23,7 +23,7 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
 
     }
     const handler = PaystackPop.setup({
-        key: 'pk_test_c3c92ed8d034efde8ef609b5b649b38d7737ff3a', // Replace with your public key
+        key: publickey, // Replace with your public key
         email,
         amount: price * 100,
         // label: "Optional string that replaces customer email"
