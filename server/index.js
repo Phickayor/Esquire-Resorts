@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
 const jwt = require("jsonwebtoken")
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 const app = express()
 // parse application/x-www-form-urlencoded
@@ -20,27 +18,13 @@ app.use(
 );
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
-const oauth2Client = new OAuth2(
-    process.env.OAUTH_CLIENTID, // ClientID
-    process.env.OAUTH_CLIENT_SECRET, // Client Secret
-    "https://developers.google.com/oauthplayground" // Redirect URL
-);
-oauth2Client.setCredentials({
-    refresh_token: process.env.OAUTH_REFRESH_TOKEN
-});
-const accessToken = oauth2Client.getAccessToken()
 
 //Transporter Details
 var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        type: "OAuth2",
         user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD,
-        clientId: process.env.OAUTH_CLIENTID,
-        clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        accessToken: accessToken
+        pass: process.env.MAIL_PASSWORD
     }
 })
 const payload = {
