@@ -23,21 +23,35 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
 
     }
     const handler = PaystackPop.setup({
-        key: publickey, // Replace with your public key
+        key: publickey,
         email,
+        currency:'NGN',
         amount: price * 100,
         // label: "Optional string that replaces customer email"
         onClose: function () {
-            alert('Window closed. proceeding to rooms');
-            Router.push({
-                pathname: '/rooms'
-            })
+            alert('Window closed');
+        //     Router.push({
+        //         pathname: '/rooms'
+        //     })
         },
         callback: function (response) {
-            let message = 'Payment complete! Reference: ' + response.reference;
-            CreateBooking(name, email, roomname, arrivalDate, depatureDate, guestNumber, price, response.reference)
-            alert(message);
-
+                let message = 'Payment complete! Reference: ' + response.reference;
+                fetch(`${baseurl}/verify/${response.reference}`).then(
+                (res)=>{
+                    return res.json()
+                }
+           ).then((data)=>{
+            if(data.data.status==='success' && data.data.amount === price*100){
+                CreateBooking(name, email, roomname, arrivalDate, depatureDate, guestNumber, price, response.reference)
+                alert(message);
+            }else if(data.data.amount != price*100){
+                console.log(`Error verifying payment due too incorrect amount`)
+            }
+            else{
+                console.log(`Failed to verify payment.`)
+            }
+           })
+            
         }
     });
 
@@ -57,7 +71,7 @@ function SendMail(status, name, email, roomname, arrivalDate, depatureDate, gues
             pathname: '/'
         })
     } else {
-        alert("Payment recieved sucessful but there was an issue with your reservation. Forward your payment receipt to esquireresorts@gmail.com to get your reservation details")
+        alert("Payment recieved sucessful but there was an issue with sending your reservation details. Forward your payment receipt to esquireresorts@gmail.com to get your reservation details")
     }
 }
 export default handlePayment

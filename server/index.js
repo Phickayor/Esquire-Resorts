@@ -8,26 +8,18 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 const app = express()
-// const path = require("path")
-const morgan = require("morgan")
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: ["https://www.esquireresorts.com", "https://esquireresorts.com"], // restrict calls to those this address
+        origin: ["https://www.esquireresorts.com", "https://esquireresorts.com",'http://localhost:3000'], // restrict calls to those this address
         methods: ["POST"] // only allow POST requests
     })
 );
-app.use(morgan("combined"))
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
-// app.use(express.static(path.join(__dirname, '/../client', 'build')))
-
-// app.get(`/`, (req, res) => {
-//     res.sendFile(path.join(__dirname, '/../client', 'build', 'server', 'pages'));
-// })
 const oauth2Client = new OAuth2(
     process.env.OAUTH_CLIENTID, // ClientID
     process.env.OAUTH_CLIENT_SECRET, // Client Secret
@@ -37,14 +29,6 @@ oauth2Client.setCredentials({
     refresh_token: process.env.OAUTH_REFRESH_TOKEN
 });
 const accessToken = oauth2Client.getAccessToken()
-
-app.get(`/sa`, (req, res) => {
-    res.send({
-        id: new Date().getTime(),
-        name: "Esquire Resorts",
-        location: 'Lagos Nigeria'
-    })
-})
 
 //Transporter Details
 var transporter = nodemailer.createTransport({
@@ -108,7 +92,31 @@ app.post("/checkbooking", function (req, res) {
         });
     })
 })
+//Verifying payment status and amount
 
+app.get('/verify/:reference', (req, res) => {
+    const reference = req.params.reference;
+    const options = {
+      hostname: 'api.paystack.co',
+      port: 443,
+      path: `/transaction/verify/${reference}`,
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + process.env.PAYSTACK_SECRET
+      }
+    };
+  
+    fetch(`https://${options.hostname}${options.path}`, {
+      method: options.method,
+      headers: options.headers,
+    })
+      .then(response => response.json())
+      .then(data => res.json(data))
+      .catch(error => {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred' });
+      });
+  });
 // POST /booking
 app.post("/booking", function (req, res) {
     var newinfo = {

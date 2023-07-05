@@ -141,34 +141,34 @@ function BookRoom(props) {
                     <h3 style={{ color: infoColor }} className="text-purple-500 text-center text-md font-semibold mx-5">{info} &nbsp; {infoMessage}</h3>
 
                     <div className="relative z-0 border-b-2">
-                        <input type="text" required ref={firstnameContainer} id="floating_standard" className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400" placeholder="John Doe" />
-                        <label htmlFor="floating_standard" className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+                        <input name='name' type="text" required ref={firstnameContainer} className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400" placeholder="John Doe" />
+                        <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
                     </div>
                     <div className="relative z-0  border-b-2">
-                        <input type="email" required ref={mailContainer} id="floating_standard" className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400" placeholder="johndoe@gmail.com" />
-                        <label htmlFor="floating_standard" className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                        <input name='email' type="email" required ref={mailContainer}  className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400" placeholder="johndoe@gmail.com" />
+                        <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
                     </div>
                     <div className="relative z-0  border-b-2">
                         <input
                             type="date"
+                            name='arrival date'
                             required ref={arrivalDateContainer}
                             min={minimumArrivalDate}
-                            onChange={priceCheck}
-                            id="floating_standard" className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                            onChange={priceCheck} className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                         />
-                        <label htmlFor="floating_standard" className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Arrival Date</label>
+                        <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Arrival Date</label>
                     </div>
                     <div className="relative z-0  border-b-2">
                         <input
                             type="date"
+                            name='departure date'
                             required ref={depatureDateContainer}
                             min={minimumDepatureDate}
-                            onChange={priceCheck}
-                            id="floating_standard" className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                            onChange={priceCheck} className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                         />
-                        <label htmlFor="floating_standard" className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Departure Date</label>
+                        <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Departure Date</label>
                     </div>
-                    <select id="countries"
+                    <select name="countries"
                         required
                         ref={guestNumberContainer}
                         className=" border-b text-gray-900 text-md rounded-lg block px-5 w-full mx-auto p-2.5 border-gray-600 placeholder-gray-400  focus:ring-purple-500 focus:border-purple-500">
