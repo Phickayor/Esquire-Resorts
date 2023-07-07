@@ -89,7 +89,7 @@ function Footer() {
                         className="boxup-box flex flex-col grow items-center md:items-start basis-auto mb-[40px]">
                         <div className="font-bold mb-4 text-lg">Contact Details</div>
                         <a href="https://goo.gl/maps/6Rboa4u5RH7VCbik7" className="boxuplink font-normal leading-[200%] text-sm">{location} &nbsp;18 Olokunola Crescent Ikorodu </a>
-                        <a href="tel:+2349091745367" className="boxuplink font-normal leading-[200%] text-sm">{phone} &nbsp;09091745367</a>
+                        <a href="tel:+2349031870456" className="boxuplink font-normal leading-[200%] text-sm">{phone} &nbsp;09031870456</a>
                         <a href="mailto:esquireresorts@gmail.com" className="boxuplink font-normal leading-[200%] text-sm">{mail} &nbsp;esquireresorts@gmail.com</a>
                     </div>
                 </div>
