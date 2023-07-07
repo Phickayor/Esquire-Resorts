@@ -28,7 +28,7 @@ function Address() {
                 </div>
                 <div className='flex space-x-5'>
                     <h1 className='text-3xl'>{phone}</h1>
-                    <h1 className='  text-md'>090 9174 5367</h1>
+                    <a href='tel:+2349091745367'className='text-md'>090 9174 5367</a>
                 </div>
                 <div className='flex space-x-5'>
                     <h1 className='text-3xl'>{web}</h1>
