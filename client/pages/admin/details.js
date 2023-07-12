@@ -95,6 +95,7 @@ function Details() {
                 console.log(err)
             })
     }, [guestFilterSelected, roomFilterSelected, ref])
+
     useEffect(() => {
         var storedtoken = localStorage.getItem("token")
         fetch(`${baseurl}/confirmtoken`, {
@@ -116,7 +117,7 @@ function Details() {
         FindSearch()
     }, [FindSearch, router])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetch(`${baseurl}/reservations`)
             .then(function (res) {
                 return res.json()

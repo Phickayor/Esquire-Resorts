@@ -103,7 +103,7 @@ function Footer() {
                             <div className="social_links text-primary text-[23px]">
                                 <a href="" className='inline-block'><FontAwesomeIcon icon={faFacebookF} className="mr-[35px] md:mr-[45px]" /></a>
                                 <a href="" className='inline-block'><FontAwesomeIcon icon={faTwitter} className="mr-[35px] md:mr-[45px]" /></a>
-                                <a href="" className='inline-block'><FontAwesomeIcon icon={faInstagram} className="mr-0" /></a>
+                                <a href="https://www.instagram.com/esquireresort/" className='inline-block'><FontAwesomeIcon icon={faInstagram} className="mr-0" /></a>
                             </div>
                         </div>
                         <div className="news mt-[40px] md:mt-[0]">
