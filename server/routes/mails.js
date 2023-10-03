@@ -4,31 +4,31 @@ var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mon
 
 //TRANSPORTER
 var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD
-    }
-})
+  service: "gmail",
+  auth: {
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
 //RESERVATION MAIL
-exports.sendreservation =  (req,res)=>{
-    var reservationDetails = {
-        rname: req.body.roomname,
-        name: req.body.name,
-        arrivalDate: req.body.arrivalDate,
-        depatureDate: req.body.depatureDate,
-        guestNumber: req.body.guestNumber,
-        price: req.body.price,
-        mail: req.body.email,
-        ref: req.body.ref
-    }
+exports.sendreservation = (req, res) => {
+  var reservationDetails = {
+    rname: req.body.roomname,
+    name: req.body.name,
+    arrivalDate: req.body.arrivalDate,
+    depatureDate: req.body.depatureDate,
+    guestNumber: req.body.guestNumber,
+    price: req.body.price,
+    mail: req.body.email,
+    ref: req.body.ref,
+  };
 
-    //mail options
-    var mailOptions = {
-        from: '"Esquire Resorts" <esquireresorts@gmail.com>',
-        to: reservationDetails.mail,
-        subject: reservationDetails.name + "'s Reservation Details",
-        html: `
+  //mail options
+  var mailOptions = {
+    from: '"Esquire Resorts" <esquireresorts@gmail.com>',
+    to: reservationDetails.mail,
+    subject: reservationDetails.name + "'s Reservation Details",
+    html: `
             <section style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
                 <h2 style="color: #333;">Reservation Details</h2>
                 
@@ -53,43 +53,45 @@ exports.sendreservation =  (req,res)=>{
                     Best regards,<br>
                     Esquire Resorts
                 </p>
-            </section>`
-    };
-    //send mail
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-        res.send("Mail Sent")
-    });
-}
+            </section>`,
+  };
+  //send mail
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: " + info.response);
+    res.send("Mail Sent");
+  });
+};
 
 //SUBSCRIBTION MAIL
-exports.subscribe =(req,res)=>{
-    var email = { "mail": req.body.mail }
-    MongoClient.connect(url, function (err, db) {
-        if (err) throw err
-        var dbo = db.db("esquire");
-        dbo.collection("subscribers").find({}, { projection: { _id: 0, mail: 1 } }).toArray(function (err, result) {
+exports.subscribe = (req, res) => {
+  var email = { mail: req.body.mail };
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("esquire");
+    dbo
+      .collection("subscribers")
+      .find({}, { projection: { _id: 0, mail: 1 } })
+      .toArray(function (err, result) {
+        if (err) throw err;
+        if (result.find((obj) => obj.mail === email.mail) !== undefined) {
+          console.log("Existing User");
+          res.json({ status: "Existing User" });
+        } else {
+          dbo.collection("subscribers").insertOne(email, function (err, res) {
             if (err) throw err;
-            if (result.find(obj => obj.mail === email.mail) !== undefined) {
-                console.log("Existing User")
-                res.json({ "status": "Existing User" });
-            }
-            else {
-                dbo.collection("subscribers").insertOne(email, function (err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted");
-                })
-                res.json({ "status": "subscribed" })
+            console.log("1 document inserted");
+          });
+          res.json({ status: "subscribed" });
 
-                //mail options
-                var mailOptions = {
-                    from: '"Esquire Resorts" <esquireresorts@gmail.com>',
-                    to: email.mail,
-                    subject: 'Welcome to Exclusive Offers',
-                    html: `
+          //mail options
+          var mailOptions = {
+            from: '"Esquire Resorts" <esquireresorts@gmail.com>',
+            to: email.mail,
+            subject: "Welcome to Exclusive Offers",
+            html: `
                     <section 
                     style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
                     <h2 style="color: #333;">Welcome to Exclusive Offers!</h2>
@@ -114,43 +116,43 @@ exports.subscribe =(req,res)=>{
                       Welcome aboard!<br>
                       Esquire Resorts
                     </p>
-                  </section>`
-                };
-                //send mail
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        return console.log(error);
-                    }
-                    console.log('Message sent: ' + info.response);
-                });
+                  </section>`,
+          };
+          //send mail
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              return console.log(error);
             }
-        })
-    })
-}
+            console.log("Message sent: " + info.response);
+          });
+        }
+      });
+  });
+};
 
 //RECEIVE FEED BACK OR ENQUIRY MAIL
-exports.feedback = (req,res)=>{
-    var details = {
-        name: req.body.name,
-        subject: req.body.subject,
-        email: req.body.email,
-        message: req.body.message
+exports.feedback = (req, res) => {
+  var details = {
+    name: req.body.name,
+    subject: req.body.subject,
+    email: req.body.email,
+    message: req.body.message,
+  };
+
+  var mailOptions = {
+    from: `"Esquire Resorts" <${details.email}>`,
+    to: process.env.MAIL_USERNAME,
+    subject: details.subject,
+    text: details.message + " " + details.email,
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      res.json({ info: "failed" });
+      console.log(err);
+    } else {
+      console.log("Email sent: " + info.response);
+      res.json({ info: "success" });
     }
-
-    var mailOptions = {
-        from: `"Esquire Resorts" <${details.email}>`,
-        to: process.env.MAIL_USERNAME,
-        subject: details.subject,
-        text: details.message + " " + details.email
-    };
-
-    transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-            res.json({ "info": "failed" })
-            console.log(err);
-        } else {
-            console.log("Email sent: " + info.response);
-            res.json({ "info": "success" })
-        }
-    });
-}
+  });
+};

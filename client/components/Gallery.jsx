@@ -19,7 +19,7 @@ function Gallery() {
                     <h1 className='text-4xl text-center text-purple-500 font-bold lg:text-5xl'>OUR GALLERY</h1>
                     <p className='text-3xl font-semibold text-slate-700 text-center'>Relive our moments with us !</p>
                     <Link href="https://esquireresortslimited.pixieset.com/esquireresorts/" className='justify-center flex'>
-                        <button className=' hidden lg:block self-center bg-violet-500 py-6 lg:py-4 rounded-2xl text-xl text-white font-semibold text-2xl w-10/12'>View Gallery</button>
+                        <button className=' hidden lg:block btn'>View Gallery</button>
                     </Link>
                 </div>
 
@@ -27,7 +27,7 @@ function Gallery() {
                     <img className="h-full hover:opacity-50  rounded-2xl w-full" src="/background/bg1.jpeg" alt="Esquire Building" />
                 </div>
                 <Link href="https://esquireresortslimited.pixieset.com/esquireresorts/" className='justify-center flex'>
-                    <button className=' lg:hidden self-center bg-violet-500 py-6 lg:py-4 rounded-2xl text-xl text-white font-semibold text-2xl w-10/12'>View Gallery</button>
+                    <button className='lg:hidden btn'>View Gallery</button>
                 </Link>
             </div>
         </div>

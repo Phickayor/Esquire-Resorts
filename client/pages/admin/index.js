@@ -17,7 +17,7 @@ function Login() {
     const emailContainer = useRef()
     const pswdContainer = useRef()
     const [statusMessage, setStaus] = useState("")
-    const [load, setLoad] = useState()
+    const [load, setLoad] = useState(null)
     const spin = <FontAwesomeIcon icon={faSpinner} className="fa-spin mx-2" />
     const handleSignIn = ((e) => {
         setLoad(spin)
