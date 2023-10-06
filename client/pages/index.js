@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 import Home from "../components/Home";
 import Gallery from "../components/Gallery";
-import Goals from "../components/Goals";
 import NavBar from "../components/NavBar";
 import Reviews from "../components/Reviews";
 import Services from "../components/Services";
@@ -27,15 +26,15 @@ function About() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      <div>
-        <Home />
+      <Home />
+
+      <div className="[&>*]:py-12 px-10 lg:px-40 ">
         <AboutUs />
-        <Goals />
         <Gallery />
         <Reviews />
         <Services />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

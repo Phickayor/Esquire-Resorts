@@ -1,33 +1,34 @@
 import React from "react";
+import { Italianno } from "@next/font/google";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+const italianno = Italianno({ weight: "400", subsets: ["latin"] });
 function Home() {
   const angle = <AiOutlineDoubleRight className="self-center" />;
   return (
-    <div className="top-0 min-h-screen flex flex-col justify-center items-center px-10 lg:px-24">
-      <div className="grid grid-cols-2 gap-10">
-        <div className="absolute w-40 h-36 bg-violet-400 -z-10 blur-xl rounded-full"></div>
-        <div className="absolute right-20 bottom-0  w-40 h-40 bg-violet-400 -z-10 blur-xl rounded-full"></div>
-        <div className="self-center space-y-6">
-          <h1 className="text-6xl leading-[5rem] font-semibold ">
-            Discover your <span className="text-violet-700 ">Oasis </span> from
-            <span className="text-violet-700 "> Luxury</span>
+    <div className="top-0 min-h-screen flex flex-col justify-center ">
+      <div className="absolute left-0 top-0 bg-slate-800">
+        <img
+          src="/images/environment1.jpg"
+          className="w-screen h-screen -z-10 opacity-70 object-cover"
+        />
+      </div>
+      <div className="gap-10 text-center relative text-white">
+        <div className="lg:space-y-6 space-y-8">
+          <h1
+            className={`text-7xl xl:text-8xl xl:leading-[5rem] font-bold ${italianno.className}`}
+          >
+            Discover your <span className="text-purple-300 ">Oasis </span> from
+            <span className="text-purple-300 "> Luxury</span>
           </h1>
-          <p className="text-lg">
+          <p className="xl:text-lg leading-2 font-light mx-auto md:w-9/12">
             Indulge in the epitome of sophistication and relaxation at our
             exquisite hotel. Experience unparalleled comfort, world-class
             amenities, and impeccable service amidst stunning surroundings. Your
             perfect getaway begins here.
           </p>
-          <button className="flex gap-2 btn">
-            Explore {angle}
-          </button>
-        </div>
-        <div>
-          <img
-            src="/images/DSC_3341.jpg"
-            className="rounded-xl"
-            alt="Luxurious room"
-          />
+          <div className="flex flex-col">
+            <button className="self-center gap-2 btn">Explore {angle}</button>
+          </div>
         </div>
       </div>
     </div>

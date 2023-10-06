@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
+import Goals from "./Goals";
 import "aos/dist/aos.css";
 import Aos from "aos";
 function AboutUs() {
@@ -8,15 +9,11 @@ function AboutUs() {
   });
 
   return (
-    <div className="">
-      <div className="lg:h-[25rem] mx-auto w-11/12 flex flex-col lg:flex-row">
-        <div
-          data-aos="zoom-in-right"
-          data-aos-duration="1500"
-          className="lg:w-1/2 p-4 flex lg:order-1 order-2 flex-col justify-center space-y-5 my-5"
-        >
-          <h1 className="lg:text-5xl text-4xl font-semibold text-slate-700">
-            About Us
+    <div className="space-y-8">
+      <div className="lg:h-[25rem] flex flex-col lg:flex-row">
+        <div className="lg:w-1/2 p-4 flex lg:order-1 order-2 flex-col justify-center space-y-5 my-5">
+          <h1 className="heading">
+            <span className="text-purple-500">About</span> Us
           </h1>
           <p className=" text-lg">
             Welcome to our luxurious hotel, where comfort meets elegance.
@@ -36,11 +33,12 @@ function AboutUs() {
         >
           <img
             className=" h-full rounded-2xl mx-auto w-11/12"
-            src="/background/bg1.jpeg"
+            src="/images/building2.jpg"
             alt="Esquire Building"
           />
         </div>
       </div>
+      <Goals />{" "}
     </div>
   );
 }
