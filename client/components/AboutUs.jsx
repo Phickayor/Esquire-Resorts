@@ -1,13 +1,7 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import Goals from "./Goals";
-import "aos/dist/aos.css";
-import Aos from "aos";
 function AboutUs() {
-  useEffect(() => {
-    Aos.init();
-  });
-
   return (
     <div className="space-y-8">
       <div className="lg:h-[25rem] flex flex-col lg:flex-row">
@@ -26,11 +20,7 @@ function AboutUs() {
             <button className="btn">Book Room</button>
           </Link>
         </div>
-        <div
-          data-aos="zoom-in-left"
-          data-aos-duration="1500"
-          className="lg:w-1/2 lg:order-2 order-1"
-        >
+        <div className="lg:w-1/2 lg:order-2 order-1">
           <img
             className=" h-full rounded-2xl mx-auto w-11/12"
             src="/images/building2.jpg"

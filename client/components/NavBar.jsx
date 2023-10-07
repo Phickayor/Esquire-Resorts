@@ -29,14 +29,17 @@ function NavBar() {
   }
 
   return (
-    <div className="fixed w-screen top-0 left-0 bg-white  backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 lg:px-24 py-3 lg:py-5">
+    <div className="fixed w-screen top-0 left-0 bg-white  backdrop-blur-lg border-b-2 z-20 flex justify-between px-10 lg:px-24 py-2 lg:py-4">
       {/* Logo */}
       <div className="self-center flex gap-2">
         {/* <img
           src="/favicon.ico"
           className="self-center h-19 w-10 object-cover"
         /> */}
-        <Link href="/" className="self-center c font-semibold text-lg lg:text-xl text-violet-500">
+        <Link
+          href="/"
+          className="self-center font-semibold text-lg lg:text-xl text-violet-500"
+        >
           Esquire Resorts
         </Link>
       </div>
@@ -81,8 +84,10 @@ function NavBar() {
         <Link href="/rooms">{link}</Link>
       </div>
       <AiOutlineMenu className="lg:hidden text-xl self-center cursor-pointer" />
+
+      <div className="absolute right-0 "></div>
     </div>
   );
 }
-
+`   `;
 export default NavBar;
