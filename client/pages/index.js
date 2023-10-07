@@ -19,13 +19,13 @@ function About() {
       </Head>
       <NavBar />
       <Home />
-
-      <div className="[&>*]:py-12 px-5 md:px-10 lg:px-20 xl:px-36 ">
+px-10 lg:px-20 xl:px-36">
         <AboutUs />
         <Gallery />
         <Reviews />
         <Services />
       </div>
+      <div className="[&>*]:py-12 px-5 md:
       <Footer />
     </>
   );
