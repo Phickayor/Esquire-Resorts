@@ -187,7 +187,7 @@ function BookRoom(props) {
                             </div>
                         </div>
                         <div className="justify-center hidden lg:flex">
-                            <button type='submit' className="text-2xl bg-purple-500 w-9/12 text-white self-center rounded-lg p-5 font-semibold">
+                            <button type='submit' className="text-2xl bg-purple-500 w-9/12 text-white self-center rounded-lg p-4 font-semibold">
                                 {load} Proceed to Payment
                             </button>
                         </div>

@@ -129,6 +129,11 @@ function NavBar() {
             </Link>
           </li>
         </ul>
+        <Link href="/rooms" className="flex flex-col">
+          <button className="self-center w-9/12 border-none bg-purple-500  text-white py-3 rounded-lg text-center border-2 hover:scale-105 duration-150">
+            Book a room
+          </button>
+        </Link>
       </div>
     </div>
   );

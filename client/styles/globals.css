@@ -9,6 +9,9 @@
 .heading{
     @apply lg:text-5xl text-4xl font-semibold text-slate-700;
 }
+.subheading{
+    @apply text-slate-700 text-2xl lg:text-3xl font-semibold;
+}
 .desc{
     @apply my-2 text-lg;
 }

@@ -18,9 +18,9 @@ function Faqs() {
     Aos.init();
   }, []);
   return (
-    <div className="text-slate-700">
+    <div>
       <div className="space-y-2 text-center">
-        <h1 className="text-slate-700 text-2xl lg:text-3xl font-semibold">
+        <h1 className="subheading">
           Frequently Asked <span className="text-purple-500">Questions</span>?
         </h1>
         <p>Find answers to commonly asked questions</p>

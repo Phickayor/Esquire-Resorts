@@ -1,79 +1,83 @@
 [
-    {
-        "name": "Deluxe King",
-        "price": "27750",
-        "features": [
-            "Larger bed than the Cozy Executive",
-            "Chair and Table",
-            "Comfy Relaxation Chair ",
-            "Fast Internet access",
-            "Cable TV"
-        ],
-        "image": [
-            "/deluxeKing/a.jpeg" , "/deluxeKing/b.jpeg",
-             "/deluxeKing/c.jpeg", "/deluxeKing/d.jpeg",
-              "/deluxeKing/e.jpeg", "/deluxeKing/f.jpeg",
-               "/deluxeKing/g.jpeg", "/deluxeKing/h.jpeg",   
-               "/deluxeKing/i.jpeg", "/deluxeKing/j.jpeg"
-            ],
-            "path":"deluxeKing"
-    },
-    {
-        "name": "Cozy Executive",
-        "price": "22500",
-        "features": [         
-            "Larger bed than the Studio Room",
-            "Fast Internet access",
-            "Cable TV"
-        ],  
-        "image": [
-            "/cozyExecutive/a.jpeg" , "/cozyExecutive/b.jpeg",
-             "/cozyExecutive/c.jpeg", "/cozyExecutive/d.jpeg"
-            ],
-            "path":"cozyExecutive"
-    },
-    {
-        "name": "Deluxe King Extra",
-        "price": "29750",
-        "features": [
-            "Two sitting chairs and one table",
-            "Fast Internet access",
-            "More Comfy and larger bed than that of the Deluxe King",
-            "Cable TV"
-        ],
-        "image":[
-            "/deluxeKingExtra/a.jpeg" , "/deluxeKingExtra/b.jpeg"
-        ],
-        "path":"deluxeKingExtra"
-    },
-    {
-        "name": "Diamond Suite",
-        "price": "42950",
-        "features": [
-            "You have your own Personal Palor",
-            "Bigger and more comfy bed",
-            "Fast Internet access",
-            "Cable TV"
-        ],
-        "image": [
-            "/diamondSuite/a.jpeg" , "/diamondSuite/b.jpeg",
-             "/diamondSuite/c.jpeg", "/diamondSuite/d.jpeg"
-            ],
-            "path":"diamondSuite"
-
-    },  {
-        "name": "Studio Room",
-        "price": "18950",
-        "features": [
-            "Chair and Table",
-            "Comfy Relaxation Chair ",
-            "Fast Internet access",
-            "Cable TV"
-        ],
-        "image": [
-            "/studioRoom/a.jpeg" , "/studioRoom/b.jpeg"
-            ],
-            "path":"studioRoom"
-
-    }
+  {
+    "name": "Deluxe King",
+    "price": "27750",
+    "features": [
+      "Larger bed than the Cozy Executive",
+      "Chair and Table",
+      "Comfy Relaxation Chair ",
+      "Fast Internet access",
+      "Cable TV"
+    ],
+    "image": [
+      "/deluxeKing/a.jpg",
+      "/deluxeKing/b.jpeg",
+      "/deluxeKing/c.jpeg",
+      "/deluxeKing/d.jpeg",
+      "/deluxeKing/e.jpeg",
+      "/deluxeKing/f.jpeg",
+      "/deluxeKing/g.jpeg",
+      "/deluxeKing/h.jpeg",
+      "/deluxeKing/i.jpeg",
+      "/deluxeKing/j.jpeg"
+    ],
+    "path": "deluxeKing"
+  },
+  {
+    "name": "Cozy Executive",
+    "price": "22500",
+    "features": [
+      "Larger bed than the Studio Room",
+      "Fast Internet access",
+      "Cable TV"
+    ],
+    "image": [
+      "/cozyExecutive/a.jpeg",
+      "/cozyExecutive/b.jpeg",
+      "/cozyExecutive/c.jpeg",
+      "/cozyExecutive/d.jpeg"
+    ],
+    "path": "cozyExecutive"
+  },
+  {
+    "name": "Deluxe King Extra",
+    "price": "29750",
+    "features": [
+      "Two sitting chairs and one table",
+      "Fast Internet access",
+      "More Comfy and larger bed than that of the Deluxe King",
+      "Cable TV"
+    ],
+    "image": ["/deluxeKingExtra/a.jpg", "/deluxeKingExtra/b.jpeg"],
+    "path": "deluxeKingExtra"
+  },
+  {
+    "name": "Diamond Suite",
+    "price": "42950",
+    "features": [
+      "You have your own Personal Palor",
+      "Bigger and more comfy bed",
+      "Fast Internet access",
+      "Cable TV"
+    ],
+    "image": [
+      "/diamondSuite/a.jpeg",
+      "/diamondSuite/b.jpeg",
+      "/diamondSuite/c.jpeg",
+      "/diamondSuite/d.jpeg"
+    ],
+    "path": "diamondSuite"
+  },
+  {
+    "name": "Studio Room",
+    "price": "18950",
+    "features": [
+      "Chair and Table",
+      "Comfy Relaxation Chair ",
+      "Fast Internet access",
+      "Cable TV"
+    ],
+    "image": ["/studioRoom/a.jpg", "/studioRoom/b.jpeg"],
+    "path": "studioRoom"
+  }
 ]

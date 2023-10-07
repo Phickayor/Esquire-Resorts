@@ -11,10 +11,8 @@ function ContactUs() {
       <div className="flex py-5">
         <div className="lg:w-1/2 lg:p-10">
           <div className="space-y-2">
-            <h1 className="text-slate-700 text-3xl lg:text-4xl font-semibold">
-              Get in touch
-            </h1>
-            <p className="text-sm lg:text-md">
+            <h1 className="subheading">Get in touch</h1>
+            <p>
               Feel free to reach out to us for any inquiries or assistance. We
               value your input and are here to help.
             </p>
