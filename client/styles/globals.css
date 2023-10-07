@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
 .btn{
-    @apply flex gap-2 hover:scale-105 py-2.5 px-6 font-medium text-lg bg-violet-500 text-white rounded-lg;
+    @apply flex border-none gap-2 hover:scale-105 py-2.5 px-6 font-medium text-lg bg-violet-500 text-white rounded-lg;
 }
 .heading{
     @apply lg:text-5xl text-4xl font-semibold text-slate-700;

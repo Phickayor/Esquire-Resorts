@@ -1,47 +1,60 @@
-import React, { useEffect, useState } from 'react'
-import Mail from './mail'
-import Address from './Address'
-// import CallNow from './callNow'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMailBulk, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons'
+import React from "react";
+import { AiOutlineSend } from "react-icons/ai";
 function ContactUs() {
-    const [content, setContent] = useState(<Address />)
-    const location = <FontAwesomeIcon icon={faMapMarkerAlt} className="pb-2" />
-    const phone = <FontAwesomeIcon icon={faPhone} className="pb-2" />
-    const mail = <FontAwesomeIcon icon={faMailBulk} className="pb-2" />
-    const [mailDiv, setMailDiv] = useState()
-    const [locationDiv, setLocationDiv] = useState()
+  const send = <AiOutlineSend className="inline self-center text-purple-500" />;
 
-    function setColor() {
-        if (content.type.name === "Address") {
-            setLocationDiv("")
-            setMailDiv("slate-700")
-        }
-        else {
-            setMailDiv("")
-            setLocationDiv("slate-700")
-        }
-    }
-    useEffect(() => {
-        setColor()
-    })
-
-    return (
-        <div className='container mx-auto w-11/12 my-10'>
-            <h2 className='text-4xl text-center font-semibold '>Get in touch!</h2>
-            <p className='text-md text-center m-4'>Reach out to us for enquiries on Esquire Resorts</p>
-            <div className=' flex gap-10 bg-violet-500 text-center mx-auto rounded-xl w-fit px-5 mt-8 justify-center'>
-                <div className={` cursor-pointer  p-4 px-10 self-center  rounded-2xl`} onClick={() => setContent(<Address />)}>
-                    <h1 className={`text-4xl text-${locationDiv}`}>{location}</h1>
-                </div>
-                <div className={`cursor-pointer p-4 px-10  rounded-2xl`} onClick={() => setContent(<Mail />)}>
-                    <h1 className={`text-4xl text-${mailDiv}`}>{mail}</h1>
-                </div>
-            </div>
-
-            {content}
+  return (
+    <div>
+      <h1 className="text-center heading">
+        <span className="text-purple-500">Contact</span> Us
+      </h1>
+      <div className="flex py-5">
+        <div className="lg:w-1/2 lg:p-10">
+          <div className="space-y-2">
+            <h1 className="text-slate-700 text-3xl lg:text-4xl font-semibold">
+              Get in touch
+            </h1>
+            <p className="text-sm lg:text-md">
+              Feel free to reach out to us for any inquiries or assistance. We
+              value your input and are here to help.
+            </p>
+          </div>
+          <form className="my-10 text-sm lg:text-md grid grid-cols-2 gap-6 [&>*]:duration-150 [&>*]:border-2 [&>*]:py-3 [&>*]:px-4 [&>*]:rounded-lg [&>*]:border-slate-700 ">
+            <input
+              type="text"
+              placeholder="Name"
+              className="focus:outline-none focus:border-purple-500"
+            />
+            <input
+              type="text"
+              placeholder="Subject"
+              className="focus:outline-none focus:border-purple-500"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="focus:outline-none focus:border-purple-500"
+            />
+            <input
+              type="tel"
+              placeholder="Phone"
+              className="focus:outline-none focus:border-purple-500"
+            />
+            <textarea
+              placeholder="Message"
+              className="col-span-2 focus:outline-none focus:border-purple-500 h-32"
+            ></textarea>
+            <button className="mx-auto w-fit self-center col-span-2 hover:scale-105 duration-150">
+              Send Message {send}
+            </button>
+          </form>
         </div>
-    )
+        <div className="hidden self-center lg:block w-1/2 p-10">
+          <img src="/icons/contact-illustration.jpg" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default ContactUs
+export default ContactUs;
