@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
 import Goals from "./Goals";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 function AboutUs() {
+  const angle = <AiOutlineDoubleRight className="inline" />;
+
   return (
     <div className="space-y-8">
       <div className="lg:h-[25rem] flex flex-col lg:flex-row">
@@ -16,8 +19,8 @@ function AboutUs() {
             offerings, accompanied by impeccable service that will exceed your
             expectations.
           </p>
-          <Link href="/rooms">
-            <button className="btn">Book Room</button>
+          <Link href="/about" className="font-medium text-purple-500">
+            Learn More{angle}
           </Link>
         </div>
         <div className="lg:w-1/2 lg:order-2 order-1">

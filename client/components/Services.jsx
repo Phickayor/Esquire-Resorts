@@ -40,7 +40,7 @@ function Services() {
       </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
         {services.map((service) => (
-          <div className="hover:scale-105 space-y-4 shadow-2xl shadow-slate-700 rounded-xl p-6">
+          <div className="space-y-4 shadow-2xl shadow-slate-700 rounded-xl p-6">
             <img src={service.image} />
             <h1 className="text-lg font-semibold">{service.name}</h1>
             <p className="">{service.desc}</p>
