@@ -29,7 +29,7 @@ function NavBar() {
   }
 
   return (
-    <div className="fixed w-screen top-0 left-0 bg-white  backdrop-blur-lg border-b-2 z-20 flex justify-between px-10 lg:px-24 py-2 lg:py-4">
+    <div className="fixed w-screen top-0 left-0 bg-white  backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 lg:px-24 py-2 lg:py-4">
       {/* Logo */}
       <div className="self-center flex gap-2">
         {/* <img
