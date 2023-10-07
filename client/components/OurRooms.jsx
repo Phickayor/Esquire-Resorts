@@ -30,7 +30,7 @@ function OurRooms() {
             data-aos="zoom-in"
             data-aos-duration="1000"
             key={index}
-            className="space-y-4 shadow-2xl shadow-slate-700 rounded-xl h-full p-6"
+            className="space-y-4 shadow-2xl shadow-slate-700 rounded-xl h-fit lg:h-full p-6"
           >
             <img
               src={room.image[0]}
