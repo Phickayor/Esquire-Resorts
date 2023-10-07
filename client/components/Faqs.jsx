@@ -19,7 +19,7 @@ function Faqs() {
         Aos.init()
     }, [])
     return (
-        <div className='my-10 text-slate-700'>
+        <div className=' text-slate-700'>
             <div >
                 <h1 className='text-2xl md:text-3xl font-semibold text-center pt-10'>Frequently Asked Questions</h1>
 

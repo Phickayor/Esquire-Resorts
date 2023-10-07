@@ -6,19 +6,11 @@ import Gallery from "../components/Gallery";
 import NavBar from "../components/NavBar";
 import Reviews from "../components/Reviews";
 import Services from "../components/Services";
-import { Poppins } from "@next/font/google";
 import Head from "next/head";
-// The following import prevents a Font Awesome icon server-side rendering bug,
-// where the icons flash from a very large icon down to a properly sized one:
-import "@fortawesome/fontawesome-svg-core/styles.css";
-// Prevent fontawesome from adding its CSS since we did it manually above:
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false; /* eslint-disable import/first */
-const poppins = Poppins({ weight: "500", subsets: ["devanagari"] });
 
 function About() {
   return (
-    <div className={`flex flex-col min-h-screen ${poppins.className}`}>
+    <>
       <Head>
         <title>Esquire Resorts</title>
         <meta name="description" content="Esquire hotel rooms " />
@@ -35,7 +27,7 @@ function About() {
         <Services />
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

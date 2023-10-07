@@ -11,11 +11,9 @@ import {
 } from "react-icons/ai";
 function NavBar() {
   const [sideBarWidth, setSideBarWidth] = useState("w-0");
-  const menu = (
-    <AiOutlineMenu className="lg:hidden text-xl self-center cursor-pointer" />
-  );
+  const menu = <AiOutlineMenu className="text-xl self-center cursor-pointer" />;
   const close = (
-    <AiOutlineClose className="lg:hidden text-xl self-center cursor-pointer" />
+    <AiOutlineClose className=" text-xl self-center cursor-pointer" />
   );
   const [menubutton, setMenuButton] = useState(menu);
   //icons
@@ -37,7 +35,7 @@ function NavBar() {
   }
 
   return (
-    <div className="sticky top-0 left-0 bg-white  backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 lg:px-24 py-2 lg:py-4">
+    <div className="sticky top-0 bg-white backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 md:px-10 lg:px-20 xl:px-36 py-2 lg:py-4">
       {/* Logo */}
       <div className="self-center flex gap-2">
         {/* <img
@@ -91,7 +89,9 @@ function NavBar() {
         <span className="font-medium">Book a Room</span>
         <Link href="/rooms">{link}</Link>
       </div>
-      <div onClick={toggleSideBar}>{menubutton}</div>
+      <div onClick={toggleSideBar} className="lg:hidden">
+        {menubutton}
+      </div>
       <div
         className={`block lg:hidden absolute right-0 top-10 ${sideBarWidth} h-screen overflow-y-hidden bg-purple-50 duration-300`}
       >
