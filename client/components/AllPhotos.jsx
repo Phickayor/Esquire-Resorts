@@ -1,34 +1,16 @@
-import React, { useEffect } from "react";
-import "aos/dist/aos.css";
-import Aos from "aos";
-import Link from "next/link";
+import React from "react";
+import Gallery from "./Gallery";
 
-function Gallery() {
-  const pics = [
-    "bar1",
-    "barman-mixing",
-    "barman",
-    "chef",
-    "food1",
-    "garden2",
-    "food2",
-    "staffs1",
-    "food3"
-  ];
-  var i = 4;
-  useEffect(() => {
-    Aos.init();
-  });
-
+function AllPhotos() {
   return (
     <div>
-      <div className="my-10">
+      <div className="space-y-2 text-center">
         <h1 className="heading">
-          Our <span className="text-purple-500">Gallery</span>
+          Our<span className="text-purple-500"> Photos</span>
         </h1>
-        <p className="desc">Relive these beautiful moments with us</p>
+        <p>Photographs serve as the archives of our cherished memories</p>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 h-auto">
+      <div className="py-10 grid grid-cols-2 lg:grid-cols-4 gap-4 h-auto">
         <div className="grid gap-4">
           <div>
             <img
@@ -110,13 +92,8 @@ function Gallery() {
           </div>
         </div>
       </div>
-      <Link href="/gallery">
-        <button className="mx-auto w-fit my-5 self-center btn">
-          Open Gallery
-        </button>
-      </Link>
     </div>
   );
 }
 
-export default Gallery;
+export default AllPhotos;

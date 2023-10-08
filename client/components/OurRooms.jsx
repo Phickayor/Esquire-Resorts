@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import rooms from "../utils/rooms.json";
 import Router from "next/router";
-import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
 function OurRooms() {
@@ -19,7 +18,7 @@ function OurRooms() {
       <div className="space-y-2 text-center">
         <h1 className="heading">
           Our<span className="text-purple-500"> Rooms</span>
-        </h1>
+        </h1>   
         <p className="desc">
           Discover our inviting rooms with prices to suit every budget.
         </p>
@@ -27,7 +26,7 @@ function OurRooms() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
         {rooms.map((room, index) => (
           <div
-            data-aos="zoom-in"
+            data-aos="zoom-in" 
             data-aos-duration="1000"
             key={index}
             className="space-y-4 shadow-2xl shadow-slate-700 rounded-xl h-fit lg:h-full p-6"

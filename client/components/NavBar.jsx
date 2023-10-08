@@ -35,7 +35,7 @@ function NavBar() {
   }
 
   return (
-    <div className="sticky top-0 bg-white backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 md:px-10 lg:px-20 xl:px-36 py-2 lg:py-4">
+    <div className="sticky top-0 bg-purple-50 backdrop-blur-lg border-b-2 z-20 flex justify-between px-5 md:px-10 lg:px-20 xl:px-36 py-2 lg:py-4">
       {/* Logo */}
       <div className="self-center flex gap-2">
         {/* <img
