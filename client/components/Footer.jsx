@@ -9,13 +9,15 @@ import {
   FaSpinner,
   FaFacebookF,
   FaTwitter,
-  FaInstagram
+  FaInstagram,
+  FaPhone,
+  FaPhoneAlt
 } from "react-icons/fa";
 function Footer() {
   const suscriberMailContainer = useRef(null);
   const mail = <AiFillMail className="inline" />;
   const location = <FaMapMarker className="inline" />;
-  const phone = <AiFillPhone className="inline" />;
+  const phone = <FaPhoneAlt className="inline" />;
   const spin = <FaSpinner className="fa-spin" />;
   const [load, setLoad] = useState(null);
   function Subscribe(e) {

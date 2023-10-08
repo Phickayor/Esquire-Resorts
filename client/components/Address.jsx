@@ -1,41 +1,53 @@
-import React, { useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons'
-import Aos from 'aos'
-import 'aos/dist/aos.css'
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGlobe,
+  faMapMarkerAlt,
+  faPhone
+} from "@fortawesome/free-solid-svg-icons";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { FaMapMarker, FaPhoneAlt } from "react-icons/fa";
+import { AiFillMail } from "react-icons/ai";
 function Address() {
-    const location = <FontAwesomeIcon icon={faMapMarkerAlt} />
-    const phone = <FontAwesomeIcon icon={faPhone} />
-    const web = <FontAwesomeIcon icon={faGlobe} />
-    useEffect(() => {
-        Aos.init()
-    })
+  const location = <FontAwesomeIcon icon={faMapMarkerAlt} />;
+  const phone = <FontAwesomeIcon icon={faPhone} />;
+  const web = <FontAwesomeIcon icon={faGlobe} />;
+  useEffect(() => {
+    Aos.init();
+  });
 
-    return (
-        <div
-            data-aos="zoom-out"
-            data-aos-duration="1500"
-            className='lg:h-80 text-slate-700 lg:flex lg:w-9/12 rounded-2xl my-10 mx-auto'>
-            <iframe
-                className="rounded-2xl lg:rounded-r-[0] lg:w-3/5 w-full"
-                title="map"
-                src="https://www.google.com/maps/embed/v1/place?q=The+Esquire+Resort+Limited,+Okunola+Crescent+Road,+Lagos,+Nigeria&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
-            ></iframe>
-            <div className='h-full rounded-2xl lg:rounded-l-[0] mt-5 lg:mt-0 relative text-white bg-slate-500 p-4 flex flex-col space-y-5 justify-center'>
-                <div className='flex space-x-5'>
-                    <h1 className='text-3xl'>{location}</h1>
-                    <h1 className='  text-md'>18 Okunola Cres Rd, Ikorodu , Lagos</h1>
-                </div>
-                <div className='flex space-x-5'>
-                    <h1 className='text-3xl'>{phone}</h1>
-                    <a href='tel:+2349031870456'className='text-md'>090 3187 0456</a>
-                </div>
-                <div className='flex space-x-5'>
-                    <h1 className='text-3xl'>{web}</h1>
-                    <a href="https://www.esquireresorts.com" className=' text-md'>www.esquireresorts.com</a>
-                </div>
+  return (
+    <div>
+      <div className="grid lg:grid-cols-2 gap-20">
+        <iframe
+          className="w-full h-96"
+          title="map"
+          src="https://www.google.com/maps/embed/v1/place?q=The+Esquire+Resort+Limited,+Okunola+Crescent+Road,+Lagos,+Nigeria&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+        ></iframe>
+
+        <div>
+          <h1 className="text-slate-700 text-2xl lg:text-3xl font-semibold">
+            <span className="text-purple-500">Where</span> to{" "}
+            <span className="text-purple-500"> Find</span> Us
+          </h1>
+          <div className=" mx-auto py-10 px-5 my-10 shadow-2xl shadow-slate-700 justify-center space-y-5">
+            <div className="flex gap-4 ">
+              <FaPhoneAlt className="self-center text-purple-500" />
+              <span>09031870456</span>
             </div>
+            <div className="flex gap-4 ">
+              <FaMapMarker className="self-center text-purple-500" />
+              <span>18, Olokunola Crescent Ikorodu</span>
+            </div>
+            <div className="flex gap-4 ">
+              <AiFillMail className="self-center text-purple-500" />
+              <span>esquireresorts@gmail.com</span>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-export default Address
+export default Address;

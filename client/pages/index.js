@@ -8,7 +8,7 @@ import Reviews from "../components/Reviews";
 import Services from "../components/Services";
 import Head from "next/head";
 
-function About() {
+function Landingpage() {
   return (
     <>
       <Head>
@@ -30,4 +30,4 @@ function About() {
   );
 }
 
-export default About;
+export default Landingpage;
