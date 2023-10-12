@@ -53,7 +53,7 @@ function Reviews() {
                   {review.name}
                 </h1>
                 <svg
-                  class="w-10 h-10 mb-3 text-gray-400 dark:text-gray-600"
+                  className="w-10 h-10 mb-3 text-gray-400 dark:text-gray-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
