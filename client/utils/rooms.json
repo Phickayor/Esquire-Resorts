@@ -10,18 +10,15 @@
       "Cable TV"
     ],
     "image": [
-      "/deluxeKing/a.jpg",
-      "/deluxeKing/b.jpeg",
-      "/deluxeKing/c.jpeg",
-      "/deluxeKing/d.jpeg",
-      "/deluxeKing/e.jpeg",
-      "/deluxeKing/f.jpeg",
-      "/deluxeKing/g.jpeg",
-      "/deluxeKing/h.jpeg",
-      "/deluxeKing/i.jpeg",
-      "/deluxeKing/j.jpeg"
+      "/deluxeKing/bed.jpg",
+      "/deluxeKing/bed2.jpg",
+      "/deluxeKing/chair.jpg",
+      "/deluxeKing/desk.jpg",
+      "/deluxeKing/desk2.jpg",
+      "/deluxeKing/shower.jpg",
+      "/deluxeKing/toilet.jpg"
     ],
-    "path": "deluxeKing"
+    "path": "deluxe-king"
   },
   {
     "name": "Cozy Executive",
@@ -32,12 +29,13 @@
       "Cable TV"
     ],
     "image": [
-      "/cozyExecutive/a.jpeg",
-      "/cozyExecutive/b.jpeg",
-      "/cozyExecutive/c.jpeg",
-      "/cozyExecutive/d.jpeg"
+      "/cozyExecutive/bed.jpg",
+      "/cozyExecutive/bed2.jpg",
+      "/cozyExecutive/desk.jpg",
+      "/cozyExecutive/heater.jpg",
+      "/cozyExecutive/toilet.jpg"
     ],
-    "path": "cozyExecutive"
+    "path": "cozy-executive"
   },
   {
     "name": "Deluxe King Extra",
@@ -48,8 +46,14 @@
       "More Comfy and larger bed than that of the Deluxe King",
       "Cable TV"
     ],
-    "image": ["/deluxeKingExtra/a.jpg", "/deluxeKingExtra/b.jpeg"],
-    "path": "deluxeKingExtra"
+    "image": [
+      "/deluxeKingExtra/bed.jpg",
+      "/deluxeKingExtra/bed2.jpg",
+      "/deluxeKingExtra/chairs.jpg",
+      "/deluxeKingExtra/desk.jpg",
+      "/deluxeKingExtra/toilet.jpg"
+    ],
+    "path": "deluxe-king-extra"
   },
   {
     "name": "Diamond Suite",
@@ -66,7 +70,7 @@
       "/diamondSuite/c.jpeg",
       "/diamondSuite/d.jpeg"
     ],
-    "path": "diamondSuite"
+    "path": "diamond-suite"
   },
   {
     "name": "Studio Room",
@@ -77,7 +81,7 @@
       "Fast Internet access",
       "Cable TV"
     ],
-    "image": ["/studioRoom/a.jpg", "/studioRoom/b.jpeg"],
-    "path": "studioRoom"
+    "image": ["/studioRoom/bed.jpg", "/studioRoom/desk.jpg","/studioRoom/toilet.jpg"],
+    "path": "studio-room"
   }
 ]
