@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
+import { baseurl } from "../config/host";
+import { FaSpinner } from "react-icons/fa";
+import { toast } from "react-toastify";
+// import { Toast } from "react-toastify/dist/components";
 function ContactUs() {
-  const send = <AiOutlineSend className="inline self-center text-purple-500" />;
-
+  let send = <AiOutlineSend className="inline self-center text-purple-500" />;
+  let spinner = <FaSpinner className="fa-spin inline" />;
+  const [name, setName] = useState(null);
+  const [subject, setSubject] = useState(null);
+  const [email, setMail] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [delivery, setDelivery] = useState(send);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setDelivery(spinner);
+    try {
+      let res = await fetch(`${baseurl}/contact/send-mail`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, subject, email, phone, message }),
+      });
+      let data = await res.json();
+      data.success ? toast.success(data.message) : toast.error(data.message);
+      setDelivery(send);
+    } catch (error) {
+      toast.error(error);
+      setDelivery(send);
+    }
+  };
   return (
     <div>
       <h1 className="text-center heading">
@@ -17,33 +46,55 @@ function ContactUs() {
               value your input and are here to help.
             </p>
           </div>
-          <form className="my-10 text-sm lg:text-md grid grid-cols-2 gap-6 [&>*]:duration-150 [&>*]:border-2 [&>*]:py-3 [&>*]:px-4 [&>*]:rounded-lg [&>*]:border-slate-700 ">
+          <form
+            onSubmit={handleSubmit}
+            className="my-10 text-sm lg:text-md grid grid-cols-2 gap-6 [&>*]:duration-150 [&>*]:border-2 [&>*]:py-3 [&>*]:px-4 [&>*]:rounded-lg [&>*]:border-slate-700 "
+          >
             <input
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Name"
+              required
               className="focus:outline-none focus:border-purple-500"
             />
             <input
               type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               placeholder="Subject"
+              required
               className="focus:outline-none focus:border-purple-500"
             />
             <input
               type="email"
+              value={email}
+              onChange={(e) => setMail(e.target.value)}
               placeholder="Email"
+              required
               className="focus:outline-none focus:border-purple-500"
             />
             <input
               type="tel"
+              pattern="[0-9]{11}"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               placeholder="Phone"
+              required
               className="focus:outline-none focus:border-purple-500"
             />
             <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
+              required
               className="col-span-2 focus:outline-none focus:border-purple-500 h-32"
             ></textarea>
-            <button className="mx-auto w-fit self-center col-span-2 hover:scale-105 duration-150">
-              Send Message {send}
+            <button
+              type="submit"
+              className="mx-auto w-fit self-center col-span-2 hover:scale-105 duration-150"
+            >
+              Send Message {delivery}
             </button>
           </form>
         </div>
