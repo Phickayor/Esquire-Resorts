@@ -11,7 +11,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaPhone,
-  FaPhoneAlt
+  FaPhoneAlt,
 } from "react-icons/fa";
 function Footer() {
   const suscriberMailContainer = useRef(null);
@@ -23,22 +23,22 @@ function Footer() {
   function Subscribe(e) {
     e.preventDefault();
     var mailProvided = suscriberMailContainer.current.value;
-    var mail = mailProvided.toLowerCase();
+    var email = mailProvided.toLowerCase();
     setLoad(spin);
     try {
-      fetch(`${baseurl}/subscribe`, {
+      fetch(`${baseurl}/newsletter/add`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ mail })
+        body: JSON.stringify({ email }),
       })
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
           console.log(data);
-          if (data.status == "subscribed") {
+          if (data.success) {
             alert(
               "Thanks for suscribing!. We wiil let you know of any exclusive offers available"
             );
