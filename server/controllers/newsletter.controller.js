@@ -16,7 +16,7 @@ const checkSubscriber = async (req, res, next) => {
           message: "User is not a subscriber",
         });
   } catch (error) {
-    res.status(504).json({ error: error.message });
+    res.status(501).json({ error: error.message });
   }
 };
 
@@ -35,7 +35,7 @@ const checkNonSubscriber = async (req, res, next) => {
         })
       : next();
   } catch (error) {
-    res.status(504).json({ error: error.message });
+    res.status(501).json({ error: error.message });
   }
 };
 
@@ -54,7 +54,7 @@ const subscribe = async (req, res, next) => {
       next();
     });
   } catch (error) {
-    res.status(504).json({ error: error.message });
+    res.status(501).json({ error: error.message });
   }
 };
 
@@ -107,7 +107,7 @@ const mailSubscriber = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(504).json({ success: false, error: error.message });
+    res.status(501).json({ success: false, error: error.message });
   }
 };
 
@@ -124,7 +124,7 @@ const removeSubscriber = async (req, res) => {
         })
       : res.status(404).json({ message: "User is still subscribed" });
   } catch (error) {
-    res.status(504).json({ error: error.message });
+    res.status(501).json({ error: error.message });
   }
 };
 module.exports = {

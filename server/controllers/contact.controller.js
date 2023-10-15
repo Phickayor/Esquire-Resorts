@@ -33,7 +33,7 @@ const send_message = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(502).json({ message: error.message });
+    res.status(501).json({ message: error.message });
   }
 };
 module.exports = {
