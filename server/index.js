@@ -6,6 +6,7 @@ var newsletter_route = require("./routes/newsletter.route");
 var contact_route = require("./routes/contact.route");
 var reservation_route = require("./routes/reservations.route");
 var admin_route = require("./routes/admin.route");
+var auth_route = require("./routes/auth.route");
 const app = express();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,6 +17,7 @@ app.use("/newsletter", newsletter_route);
 app.use("/contact", contact_route);
 app.use("/reservation", reservation_route);
 app.use("/admin", admin_route);
+app.use("/auth", auth_route);
 // app.post("/checkbooking",bookingsroute.checkbooking);
 // app.post("/booking",bookingsroute.booking);
 // app.post("/sendreservation", mailsroute.sendreservation);
@@ -24,7 +26,6 @@ app.use("/admin", admin_route);
 // app.get('/verify/:reference', paymentroute.confirmpayment);
 // app.get("/reservations", adminroute.reservations);
 // app.post("/sortreservations", adminroute.sortreservations);
-// app.post("/login", authroute.login);
 // app.get("/confirmtoken",authroute.confirmtoken);
 app.listen(8080, () => {
   console.log(`Server listening on 8080`);
