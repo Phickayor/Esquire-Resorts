@@ -52,6 +52,7 @@ function ContactUs() {
           >
             <input
               type="text"
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Name"
@@ -60,6 +61,7 @@ function ContactUs() {
             />
             <input
               type="text"
+              name="subject"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Subject"
@@ -68,6 +70,7 @@ function ContactUs() {
             />
             <input
               type="email"
+              name="email"
               value={email}
               onChange={(e) => setMail(e.target.value)}
               placeholder="Email"
@@ -76,6 +79,7 @@ function ContactUs() {
             />
             <input
               type="tel"
+              name="phone number"
               pattern="[0-9]{11}"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -85,6 +89,7 @@ function ContactUs() {
             />
             <textarea
               value={message}
+              name="message"
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
               required

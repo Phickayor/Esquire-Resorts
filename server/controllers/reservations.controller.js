@@ -7,27 +7,33 @@ const check_reservation = async (req, res) => {
       arrivalDate: req.body.arrivalDate,
       departureDate: req.body.departureDate,
     };
+    const arrival = new Date(info.arrivalDate);
+    const departure = new Date(info.departureDate);
     const db = await connectToDatabase();
     const reservations = await db.collection("reservation");
     const results = await reservations.find({}).toArray();
-    results.some((result) => {
-      if (
-        result.arrivalDate >= info.arrivalDate &&
-        result.departureDate <= info.departureDate
-      ) {
-        res
-          .status(401)
-          .json({ message: "This room is currently booked and unavailable" });
-        return true;
-      } else {
-        return false;
-      }
+    const isRoomBooked = results.some((result) => {
+      const start = new Date(result.arrivalDate);
+      const end = new Date(result.depatureDate);
+      return (
+        ((arrival >= start && arrival <= end) ||
+          (departure >= start && departure <= end)) &&
+        info.roomname === result.roomname
+      );
     });
-    res.status(200).json({ message: "available" });
+
+    if (isRoomBooked) {
+      res
+        .status(401)
+        .json({ message: "This room is currently booked and unavailable" });
+    } else {
+      res.status(200).json({ message: "available" });
+    }
   } catch (error) {
     res.status(501).json({ error });
   }
 };
+
 const create_reservation = async (req, res, next) => {
   try {
     var reservation_details = {

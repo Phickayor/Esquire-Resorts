@@ -1,27 +1,32 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faInfoCircle,
-  faSpinner,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 // Import Swiper styles
-import handlePayment from "./handlePayment";
-import Aos from "aos";
-import "aos/dist/aos.css";
+import handleBooking from "./handleBooking";
 import { baseurl } from "../config/host";
 function BookRoom(props) {
+  //Setting minimum values for the time
+
+  const setDateSyntax = (date) => {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var exactDate = date.getDate();
+    month < 10 ? (month = `0${month}`) : month;
+    exactDate < 10 ? (exactDate = `0${exactDate}`) : exactDate;
+    return `${year}-${month}-${exactDate}`;
+  };
+
   //  Defining all variables
   const [loading, setLoading] = useState(true);
-  const guestNumberContainer = useRef(null);
-  const arrivalDateContainer = useRef(null);
-  const depatureDateContainer = useRef(null);
-  const mailContainer = useRef(null);
-  const firstnameContainer = useRef(null);
-  const [minimumArrivalDate, SetminimumArrivalDate] = useState("");
-  const [minimumDepatureDate, SetminimumDepatureDate] = useState("");
+  const [name, setName] = useState(null);
+  const [mail, setMail] = useState(null);
+  var todaysDate = new Date();
+  const [arrivalDate, setArrivalDate] = useState(setDateSyntax(todaysDate));
+  const [departureDate, setDepartureDate] = useState(null);
+  const [guestNumber, setGuestNumber] = useState(null);
+  const [minimumArrivalDate, setMinimumArrivalDate] = useState("");
+  const [minimumDepartureDate, setMinimumDepartureDate] = useState("");
   const [load, setLoad] = useState("");
   const [infoMessage, setInfo] = useState(
     "Fill out this form carefully to book a reservation."
@@ -29,145 +34,131 @@ function BookRoom(props) {
   const [infoColor, setInfoColor] = useState();
   const { price } = props;
   const [latestPrice, setLatestPrice] = useState("Select dates");
-  var today = new Date();
-  // const star = <FontAwesomeIcon icon={faStar} />
-  const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />;
+
   const spin = <FontAwesomeIcon icon={faSpinner} className="fa-spin mx-2" />;
   const info = <FontAwesomeIcon className="text-lg" icon={faInfoCircle} />;
-  //setting min depature date
-  function depDateSet(minarr) {
-    var mindepDate, mindepMonth;
-    minarr.setDate(minarr.getDate() + 1);
-    if (minarr.getDate() < 10) {
-      mindepDate = "0" + minarr.getDate();
-    } else {
-      mindepDate = minarr.getDate();
-    }
 
-    if (minarr.getMonth() + 1 < 10) {
-      mindepMonth = "0" + (minarr.getMonth() + 1);
-    } else {
-      mindepMonth = minarr.getMonth() + 1;
-    }
-    SetminimumDepatureDate(
-      minarr.getFullYear() + "-" + mindepMonth + "-" + mindepDate
-    );
-  }
-  function arrDateSet(today) {
-    var currentDate;
-    var currentMonth;
-    if (today.getDate() < 10) {
-      currentDate = "0" + today.getDate();
-    } else {
-      currentDate = today.getDate();
-    }
+  // //setting min departure date
+  // function depDateSet(minarr) {
+  //   var mindepDate, mindepMonth;
+  //   minarr.setDate(minarr.getDate() + 1);
+  //   if (minarr.getDate() < 10) {
+  //     mindepDate = "0" + minarr.getDate();
+  //   } else {
+  //     mindepDate = minarr.getDate();
+  //   }
 
-    if (today.getMonth() + 1 < 10) {
-      currentMonth = "0" + (today.getMonth() + 1);
-    } else {
-      currentMonth = today.getMonth() + 1;
-    }
-    var currentYear = today.getFullYear();
-    SetminimumArrivalDate(currentYear + "-" + currentMonth + "-" + currentDate);
-  }
+  //   if (minarr.getMonth() + 1 < 10) {
+  //     mindepMonth = "0" + (minarr.getMonth() + 1);
+  //   } else {
+  //     mindepMonth = minarr.getMonth() + 1;
+  //   }
+  //   setMinimumDepartureDate(
+  //     minarr.getFullYear() + "-" + mindepMonth + "-" + mindepDate
+  //   );
+  // }
 
-  // Sending Details to the Backend
-  function SendDetails(e) {
-    e.preventDefault();
-    setLoad(spin);
-    var mailGiven = mailContainer.current.value;
-    var mail = mailGiven.toLowerCase();
-    var fname = firstnameContainer.current.value;
-    var arrivalDate = arrivalDateContainer.current.value;
-    var depatureDate = depatureDateContainer.current.value;
-    var guestNumber = guestNumberContainer.current.value;
-    var roomname = props.roomname;
+  //minimum arrival
+  const setMinArrDate = () => {
+    var todaysDate = new Date();
+    setMinimumArrivalDate(setDateSyntax(todaysDate));
 
-    fetch(`${baseurl}/checkbooking`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ roomname, arrivalDate, depatureDate }),
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data.message);
-        if (data.message === "available") {
-          setInfoColor("green");
-          setInfo("Lucky You!, the room is available proceeding to payment...");
-          console.log("info set");
-          handlePayment(
-            mail,
-            price,
-            roomname,
-            arrivalDate,
-            depatureDate,
-            guestNumber,
-            fname
-          );
-        } else {
-          setInfoColor("red");
-          setInfo("Sorry this room is currently reserved between these days");
-        }
-        setLoad("");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert(
-          "An error occured,ensure you filled the form correctly. if error persists check your internet connection and try again"
-        );
-        setLoad("");
-      });
-  }
+    //minimum departure
+    console.log(arrivalDate);
+    const [year, month, day] = arrivalDate.split("-").map(Number);
+    // Create a new Date object using the components
+    const currentArrDate = new Date(year, month - 1, day);
+    console.log(currentArrDate);
+    // console.log(minArrDate);
+    currentArrDate.setDate(currentArrDate.getDate() + 1);
+    setMinimumDepartureDate(setDateSyntax(currentArrDate));
+  };
+
+  // const setMinDepDate = () => {};
 
   // Changing Price irrespective to date
-
   function priceCheck() {
-    var start = new Date(arrivalDateContainer.current.value);
-    var finish = new Date(depatureDateContainer.current.value);
+    var start = new Date(arrivalDate);
+    var finish = new Date(departureDate);
     // To calculate the time difference of two dates
     var Difference_In_Time = finish.getTime() - start.getTime();
     // To calculate the no. of days between two dates
     var diff = Difference_In_Time / (1000 * 3600 * 24);
     setLatestPrice("₦ " + price * diff);
-    depDateSet(start);
+    console.log(start, " ", finish);
+    setMinArrDate();
   }
+  // Sending Details to the Backend
+  async function SendDetails(e) {
+    e.preventDefault();
+    try {
+      setLoad(spin);
+      mail.toLowerCase();
+      var roomname = props.roomname;
+      const res = await fetch(`${baseurl}/reservation/check`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ roomname, arrivalDate, departureDate }),
+      });
+      const data = await res.json();
+      data.message == "available"
+        ? (setInfoColor("green"),
+          setInfo("Lucky You!, the room is available proceeding to payment..."),
+          handleBooking(
+            name,
+            mail,
+            price,
+            roomname,
+            arrivalDate,
+            departureDate,
+            guestNumber
+          ))
+        : (setInfoColor("red"),
+          setInfo("Sorry this room is currently reserved between these days"));
+      setLoad("");
+    } catch (error) {
+      console.error(error.message);
+      alert(
+        "An error occured,ensure you filled the form correctly. if error persists check your internet connection and try again"
+      );
+      setLoad("");
+    }
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
-    arrDateSet(today);
-  }, [today]);
+    setMinArrDate();
+  }, []);
+  useEffect(() => {
+    priceCheck();
+  }, [arrivalDate, departureDate]);
+
   return (
-    <form
-      onSubmit={SendDetails}
-      className="w-full"
-    //   data-aos="fade-left"
-    //   data-aos-duration="1000"
-    >
+    <form onSubmit={SendDetails} className="w-full">
       {loading ? (
-         <div className="card space-y-10 w-full">
-         <div className="rounded-lg flex justify-between gap-x-10 py-3">
+        <div className="card space-y-10 w-full">
+          <div className="rounded-lg flex justify-between gap-x-10 py-3">
             <div className="card-skeleton w-1/3 py-3"></div>
             <div className="card-skeleton w-1/3 py-3"></div>
-         </div>
-         <h1 className="text-center card-skeleton py-2.5 mx-auto w-10/12"></h1>
-         <div className="p-2 rounded-xl space-y-8">
-         <div className="card-skeleton py-3"> </div>
-         <div className="card-skeleton py-3"> </div>
-         <div className="card-skeleton py-3"> </div>
-         <div className="card-skeleton py-3"> </div>
-         <div className="card-skeleton py-3"> </div>
-         <div className="flex rounded-lg justify-between">
-         <h1 className="w-1/3 card-skeleton self-center py-3"></h1>
-         <h1 className="w-1/3 card-skeleton self-center py-3"></h1>
-         </div>
-         <button className="card-skeleton py-6 mx-auto w-10/12"> </button>
-         </div>
-       </div>
+          </div>
+          <h1 className="text-center card-skeleton py-2.5 mx-auto w-10/12"></h1>
+          <div className="p-2 rounded-xl space-y-8">
+            <div className="card-skeleton py-3"> </div>
+            <div className="card-skeleton py-3"> </div>
+            <div className="card-skeleton py-3"> </div>
+            <div className="card-skeleton py-3"> </div>
+            <div className="card-skeleton py-3"> </div>
+            <div className="flex rounded-lg justify-between">
+              <h1 className="w-1/3 card-skeleton self-center py-3"></h1>
+              <h1 className="w-1/3 card-skeleton self-center py-3"></h1>
+            </div>
+            <button className="card-skeleton py-6 mx-auto w-10/12"> </button>
+          </div>
+        </div>
       ) : (
         <>
           <div className=" pb-6">
@@ -187,65 +178,60 @@ function BookRoom(props) {
                 {info} &nbsp; {infoMessage}
               </h3>
 
-              <div className="relative z-0 border-b-2">
-                <input
-                  name="name"
-                  type="text"
-                  required
-                  ref={firstnameContainer}
-                  className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400"
-                  placeholder="John Doe"
-                />
-                <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Name
-                </label>
-              </div>
-              <div className="relative z-0  border-b-2">
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  ref={mailContainer}
-                  className="block py-2.5 px-0 mx-5 w-full text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer placeholder:text-transparent focus:placeholder:text-slate-400"
-                  placeholder="johndoe@gmail.com"
-                />
-                <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Email
-                </label>
-              </div>
-              <div className="relative z-0  border-b-2">
+              <input
+                name="name"
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="block py-2.5 px-0 mx-auto w-11/12 focus:outline-none border-b-2 focus:border-purple-500"
+                placeholder="John Doe"
+              />
+              <input
+                type="email"
+                name="email"
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
+                placeholder="Johndoe@example.com"
+                required
+                className="block py-2.5 px-0 mx-auto w-11/12 focus:outline-none border-b-2 focus:border-purple-500"
+              />
+              <div className="mx-auto w-11/12 flex justify-between border-b-2">
+                <label className="self-center">Date of Arrival</label>
                 <input
                   type="date"
                   name="arrival date"
                   required
-                  ref={arrivalDateContainer}
                   min={minimumArrivalDate}
-                  onChange={priceCheck}
-                  className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                  value={arrivalDate}
+                  onChange={(e) => {
+                    setArrivalDate(e.target.value);
+                  }}
+                  className="py-2.5 px-0 focus:outline-none focus:border-b border-purple-500"
                 />
-                <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Arrival Date
-                </label>
               </div>
-              <div className="relative z-0  border-b-2">
+              <div className="mx-auto w-11/12 flex justify-between border-b-2">
+                <label className="self-center">Date of Departure</label>
                 <input
                   type="date"
-                  name="departure date"
+                  name="arrival date"
                   required
-                  ref={depatureDateContainer}
-                  min={minimumDepatureDate}
-                  onChange={priceCheck}
-                  className="block py-2.5 px-0 mx-auto w-11/12 text-lg text-slate-700 bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                  min={minimumDepartureDate}
+                  value={departureDate}
+                  onChange={(e) => {
+                    setDepartureDate(e.target.value);
+                  }}
+                  className="py-2.5 px-0 focus:outline-none focus:border-b border-purple-500"
                 />
-                <label className="absolute text-lg text-black mx-5 font-bold  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Departure Date
-                </label>
               </div>
               <select
-                name="countries"
+                name="guest number"
                 required
-                ref={guestNumberContainer}
-                className=" border-b text-gray-900 text-md rounded-lg block px-5 w-full mx-auto p-2.5 border-gray-600 placeholder-gray-400  focus:ring-purple-500 focus:border-purple-500"
+                value={guestNumber}
+                onChange={(e) => {
+                  setGuestNumber(e.target.value);
+                }}
+                className="block py-2.5 px-0 mx-auto w-11/12 focus:outline-none border-b-2 focus:border-purple-500"
               >
                 <option defaultValue disabled>
                   Number of Guests
